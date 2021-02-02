@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Rocky.Models.Category>
+
+<div class="container p-3">
+    <div class="row pt-">
+        <div class="col-6">
+            <h2 class="text-primary">Category List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                Create New Category
+            </a>
+        </div>
+    </div>
+
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Category Name</th>
+                    <th>Display order</th>
+                    <th></th>
+                </tr>
+                @foreach (Category category in Model)
+                {
+                    <tr>
+                        <td>@category.Name</td>
+                        <td>@category.DisplayOrder</td>
+                        <td></td>
+                    </tr>
+                }
+            </thead>
+        </table>
+    }
+    else
+    {
+        <p>No categories available in the database.</p>
+    }
+</div>
+
