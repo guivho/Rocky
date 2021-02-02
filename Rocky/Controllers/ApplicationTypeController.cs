@@ -32,9 +32,13 @@ namespace Rocky.Controllers
         [HttpPost]
         public IActionResult Create(ApplicationType applicationType)
         {
-            _db.ApplicationType.Add(applicationType);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _db.ApplicationType.Add(applicationType);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(applicationType);
         }
     }
 }
